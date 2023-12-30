@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".Activity.RateUsActivity">
+
+    <!--First Page-->
+    <LinearLayout
+        android:id="@+id/firstPage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="1"
+        android:elevation="1px"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/close"
+            android:layout_width="@dimen/_15sdp"
+            android:layout_height="@dimen/_15sdp"
+            android:src="@drawable/close"
+            android:layout_gravity="end"
+            android:layout_margin="@dimen/_15sdp"
+            android:clickable="true"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/_10sdp"
+            android:layout_gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/blue"
+                android:text="Your opinion matters with us!"
+                android:textAlignment="center"
+                android:textSize="25sp"
+                android:fontFamily="@font/poppins_extra_bold"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/blue"
+                android:text="We work hard to serve you best and would love to know how would you rate your experiences?"
+                android:textAlignment="center"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_semi_bold"/>
+            <pl.droidsonroids.gif.GifImageView
+                android:layout_width="@dimen/_150sdp"
+                android:layout_height="@dimen/_150sdp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:background="@drawable/rateus_design"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/blue"
+                    android:text="App Ratings"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/poppins_semi_bold"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center_horizontal">
+
+                    <ImageView
+                        android:id="@+id/rate1"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:src="@drawable/ic_star_white"/>
+                    <ImageView
+                        android:id="@+id/rate2"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:src="@drawable/ic_star_white"/>
+                    <ImageView
+                        android:id="@+id/rate3"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:src="@drawable/ic_star_white"/>
+                    <ImageView
+                        android:id="@+id/rate4"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:src="@drawable/ic_star_white"/>
+                    <ImageView
+                        android:id="@+id/rate5"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:src="@drawable/ic_star_white"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/blue"
+                    android:text="Driver Ratings"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/poppins_semi_bold"
+                    android:layout_marginTop="@dimen/_10sdp"/>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center_horizontal">
+
+                    <ImageView
+                        android:id="@+id/Drate1"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:src="@drawable/ic_star_white"/>
+                    <ImageView
+                        android:id="@+id/Drate2"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:src="@drawable/ic_star_white"/>
+                    <ImageView
+                        android:id="@+id/Drate3"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:src="@drawable/ic_star_white"/>
+                    <ImageView
+                        android:id="@+id/Drate4"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:src="@drawable/ic_star_white"/>
+                    <ImageView
+                        android:id="@+id/Drate5"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:src="@drawable/ic_star_white"/>
+                </LinearLayout>
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/blue"
+                android:text="Comments:"
+                android:textSize="14sp"
+                android:fontFamily="@font/poppins_semi_bold"
+                android:layout_marginTop="@dimen/_10sdp"/>
+
+            <EditText
+                android:id="@+id/commentTxt"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_gravity="center_horizontal"
+                android:lines="10"
+                android:gravity="top"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:hint="Write you comment here:"
+                android:textColorHint="@color/greyish"
+                android:textColor="@color/blue"
+                android:textSize="16sp"
+                android:fontFamily="@font/poppins_medium"
+                android:padding="@dimen/_5sdp"
+                android:background="@drawable/email_reqs_container"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_gravity="center"
+                    android:orientation="vertical">
+                    <Button
+                        android:id="@+id/submitBtn"
+                        android:layout_width="@dimen/_230sdp"
+                        android:layout_height="@dimen/_30sdp"
+                        android:background="@drawable/fragment_search_search_button"
+                        android:text="SUBMIT"
+                        android:padding="@dimen/_5sdp"
+                        android:textSize="16sp"
+                        android:textColor="@color/white"
+                        android:fontFamily="@font/poppins_bold"
+                        android:layout_gravity="bottom|center_horizontal"
+                        />
+                    <TextView
+                        android:id="@+id/skip"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Skip for now"
+                        android:textColor="@color/grey"
+                        android:layout_gravity="center_horizontal"
+                        android:textSize="13sp"
+                        android:fontFamily="@font/poppins_semi_bold"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        />
+                </LinearLayout>
+            </FrameLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</RelativeLayout>

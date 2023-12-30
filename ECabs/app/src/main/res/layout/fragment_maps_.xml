@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    tools:context=".Fragments.Maps_Fragment"
+    android:id="@+id/map_frame_layout">
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/mapView"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        >
+    </fragment>
+
+    <!--Container-->
+    <!--for bg-->
+    <LinearLayout
+        android:id="@+id/searchContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:animateLayoutChanges="true"
+        android:orientation="vertical">
+
+        <!--eastback and top logo container-->
+        <LinearLayout
+            android:id="@+id/container1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/_10sdp"
+            android:visibility="gone"
+            android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_30sdp"
+                android:orientation="horizontal">
+                <ImageView
+                    android:id="@+id/eastBack"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:background="@drawable/ic_east_arrow_blue"
+                    android:rotation="180"
+                    android:layout_gravity="start"
+                    android:clickable="true"
+                    android:visibility="visible"/>
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+                    <ImageView
+                        android:layout_width="@dimen/_90sdp"
+                        android:layout_height="@dimen/_45sdp"
+                        android:src="@drawable/logo_text_blue"
+                        android:layout_gravity="end"
+                        android:clickable="true"
+                        android:visibility="visible"/>
+                </FrameLayout>
+            </LinearLayout>
+            <TextView
+                android:id="@+id/infoTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Where would you like to go?"
+                android:textColor="@color/blue"
+                android:fontFamily="@font/poppins_semi_bold_italic"
+                android:textSize="18sp"
+                />
+        </LinearLayout>
+        <!--end-->
+        <!--setting and locationTxtField Container-->
+        <LinearLayout
+            android:id="@+id/container2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="visible"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/settingBtn"
+                android:layout_width="@dimen/_33sdp"
+                android:layout_height="@dimen/_33sdp"
+                android:background="@drawable/ic_hamburger"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_gravity="center"
+                android:elevation="5dp"
+                android:visibility="visible"
+                />
+
+            <AutoCompleteTextView
+                android:id="@+id/locationTxtField"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_35sdp"
+                android:background="@drawable/fare_container"
+                android:hint="Search"
+                android:completionThreshold="1"
+                android:textColorHint="@color/grey"
+                android:textColor="@color/grey"
+                android:fontFamily="@font/poppins_medium"
+                android:ems="15"
+                android:textSize="16sp"
+                android:paddingEnd="@dimen/_25sdp"
+                android:lines="1"
+                android:maxLines="1"
+                android:paddingStart="@dimen/_10sdp"
+                android:drawableStart="@drawable/ic_search"
+                android:drawablePadding="@dimen/_5sdp"
+                android:elevation="5dp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_10sdp"
+
+                />
+        </LinearLayout>
+        <!--end-->
+        <!--search container 3-->
+        <LinearLayout
+            android:id="@+id/container3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:orientation="vertical">
+            <LinearLayout
+                android:id="@+id/firstLayerContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/currentLocBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select current location as origin"
+                    android:paddingStart="@dimen/_25sdp"
+                    android:textColor="@color/blue"
+                    android:fontFamily="@font/poppins_semi_bold_italic"
+                    android:textSize="15sp"
+                    />
+                <AutoCompleteTextView
+                    android:id="@+id/destinationTxtField"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:background="@drawable/fare_container"
+                    android:hint="Type your Destination"
+                    android:completionThreshold="1"
+                    android:lines="1"
+                    android:maxLines="1"
+                    android:textColor="@color/grey"
+                    android:textColorHint="@color/grey"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="16sp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:drawableStart="@drawable/ic_pin_solid"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:elevation="5dp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+
+                    />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_10sdp"
+                    android:orientation="horizontal">
+                    <CheckBox
+                        android:id="@+id/savedSearchCbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Save search?"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textColor="@color/blue"
+                        android:buttonTint="@color/blue"
+                        android:visibility="gone"
+                        />
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+                        <TextView
+                            android:id="@+id/clearText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="end"
+                            android:text="Clear"
+                            android:textColor="@color/grey"
+                            android:fontFamily="@font/poppins_semi_bold"
+                            android:textSize="16sp"
+                            />
+                    </FrameLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+        <!--end-->
+
+        <!--secondBestROute container-->
+        <LinearLayout
+            android:id="@+id/container4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/distanceWiseBtn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:text="Fastest Route"
+                android:textAllCaps="false"
+                android:textSize="14sp"
+                android:textColor="@color/blue"
+                android:background="@drawable/fragment_setting_button_box"
+                android:fontFamily="@font/poppins_bold"
+                android:elevation="5dp"
+                />
+            <Button
+                android:id="@+id/fareWiseBtn"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_30sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_20sdp"
+                android:text="Low-cost Route"
+                android:textAllCaps="false"
+                android:textSize="14sp"
+                android:textColor="@color/blue"
+                android:background="@drawable/fragment_setting_button_box"
+                android:fontFamily="@font/poppins_bold"
+                android:elevation="5dp"
+                android:layout_marginBottom="@dimen/_30sdp"
+                />
+
+        </LinearLayout>
+        <!--end-->
+        <Button
+            android:id="@+id/searchBtn"
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:text="Next"
+            android:textAllCaps="false"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:background="@drawable/fragment_search_search_button"
+            android:fontFamily="@font/poppins_bold"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:visibility="gone"
+            />
+
+    </LinearLayout>
+
+    <!--Bottom Sheet -->
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="5dp"
+        >
+        <include layout="@layout/bottom_sheet"/>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+</RelativeLayout>
