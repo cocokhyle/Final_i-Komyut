@@ -28,6 +28,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         TodaItem item = itemList.get(position);
         holder.bind(item);
+
+        int itemCount = position + 1;
+        holder.todaNumber.setText(String.valueOf(itemCount));
     }
 
     @Override
@@ -36,10 +39,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView todaName, todaLoc, todaFare;
+        TextView todaNumber, todaName, todaLoc, todaFare;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+            todaNumber = itemView.findViewById(R.id.todaNumber);
             todaName = itemView.findViewById(R.id.itemTodaName);
             todaLoc = itemView.findViewById(R.id.itemTodaLoc);
             todaFare = itemView.findViewById(R.id.itemTodaFare);

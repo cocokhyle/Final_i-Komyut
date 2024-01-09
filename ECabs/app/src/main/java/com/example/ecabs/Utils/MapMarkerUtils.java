@@ -74,7 +74,7 @@ Context context;
                 R.drawable.bb_toda,
                 new LatLng(14.287266,121.139044),
                 "BBTODA",
-                "St. Joseph Terminal"
+                "St. Joseph 6 Terminal"
 
         );
         //hindi pa ayos
@@ -84,7 +84,7 @@ Context context;
                 R.drawable.bb_toda,
                 new LatLng(14.287266,121.139044),
                 "BBTODA",
-                "St. Joseph Terminal"
+                "St. Joseph 6 Terminal"
 
         );
         MapUtils.addCustomMarkerToMap(

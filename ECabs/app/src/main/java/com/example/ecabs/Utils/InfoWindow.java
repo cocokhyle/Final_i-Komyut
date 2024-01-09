@@ -59,10 +59,34 @@ public class InfoWindow implements GoogleMap.InfoWindowAdapter {
             franchiseColor.setBackgroundResource(R.color.bbtoda);
             franchiseColorTxt.setText("Franchise Color: ");
             todaDetailsContainer.setVisibility(View.VISIBLE);
-            if (subTitle.equals("St. Joseph Terminal")){
+            if (subTitle.equals("St. Joseph 6 Terminal")){
                 infoSubTitle2.setText("Cabuyao Retail Plaza Terminal");
             }else if (subTitle.equals("Cabuyao Retail Plaza Terminal")){
-                infoSubTitle2.setText("St. Joseph Terminal");
+                infoSubTitle2.setText("St. Joseph 6 Terminal");
+            }
+            else if (subTitle.equals("Brgy. Bigaa/Butong Terminal")){
+                infoSubTitle2.setText("Cabuyao Retail Plaza Terminal");
+            }
+            else if (subTitle.equals("PNR Sub Terminal")){
+                infoSubTitle2.setText("St. Joseph 6 Terminal");
+            }
+        }
+        else if (title.equals("POSATODA")){
+            noTerminal.setText("No. of Terminal: 3");
+            noOfUnits.setText("No. of Units: 0001 - 0120");
+            franchiseColor.setBackgroundResource(R.color.red);
+            franchiseColorTxt.setText("Franchise Color: ");
+            todaDetailsContainer.setVisibility(View.VISIBLE);
+            if (subTitle.equals("PNR Cabuyao Terminal")){
+                infoSubTitle2.setText("City Hall Terminal");
+            }else if (subTitle.equals("City Hall Terminal")){
+                infoSubTitle2.setText("PNR Cabuyao Terminal");
+            }
+            else if (subTitle.equals("Savemore Terminal")){
+                infoSubTitle2.setText("City Hall Terminal");
+            }
+            else if (subTitle.equals("DIY Cabuyao Terminal")){
+                infoSubTitle2.setText("City Hall Terminal");
             }
         }
         else if (title.equals("BTATODA")){
@@ -71,20 +95,25 @@ public class InfoWindow implements GoogleMap.InfoWindowAdapter {
             franchiseColor.setBackgroundResource(R.color.btatoda);
             franchiseColorTxt.setText("Franchise Color: ");
             todaDetailsContainer.setVisibility(View.VISIBLE);
+            if (subTitle.equals("Cabuyao Retail Plaza Terminal")){
+                infoSubTitle2.setText("Gasoline Benz Terminal");
+            }else if (subTitle.equals("Cabuyao Town Plaza Brgy. Uno Terminal")){
+                infoSubTitle2.setText("Gasoline Benz Terminal");
+            }
+            else if (subTitle.equals("Gasoline Benz Terminal")){
+                infoSubTitle2.setText("Cabuyao Retail Plaza Terminal");
+            }
         }
-        else if (title.equals("POSATODA")){
-            noTerminal.setText("No. of Terminal: 3");
-            noOfUnits.setText("No. of Units: 0001 - 0120");
-            franchiseColor.setBackgroundResource(R.color.red);
-            franchiseColorTxt.setText("Franchise Color: ");
-            todaDetailsContainer.setVisibility(View.VISIBLE);
-        }
+
         else if (title.equals("OSPOTODA")){
             noTerminal.setText("No. of Terminal: 1");
             noOfUnits.setText("No. of Units: 0001 - 0073");
             franchiseColor.setBackgroundResource(R.color.ospotoda);
             franchiseColorTxt.setText("Franchise Color: ");
             todaDetailsContainer.setVisibility(View.VISIBLE);
+            if (subTitle.equals("Ospital ng Cabuyao")){
+                infoSubTitle2.setText("Anywhere near cabuyao ospital");
+            }
         }
         else if (title.equals("CMSATODA")){
             noTerminal.setText("No. of Terminal: 1");
@@ -92,6 +121,9 @@ public class InfoWindow implements GoogleMap.InfoWindowAdapter {
             franchiseColor.setBackgroundResource(R.color.cmsatoda);
             franchiseColorTxt.setText("Franchise Color: ");
             todaDetailsContainer.setVisibility(View.VISIBLE);
+            if (subTitle.equals("Cabuyao Retail Plaza Main Terminal Special Trip")){
+                infoSubTitle2.setText("Anywhere near cabuyao ospital");
+            }
         }
         else if (title.equals("MACATODA")){
             noTerminal.setText("No. of Terminal: 3");
@@ -99,6 +131,18 @@ public class InfoWindow implements GoogleMap.InfoWindowAdapter {
             franchiseColor.setBackgroundResource(R.color.macatoda);
             franchiseColorTxt.setText("Franchise Color: ");
             todaDetailsContainer.setVisibility(View.VISIBLE);
+            if (subTitle.equals("Ataw Terminal")){
+                infoSubTitle2.setText("St. Joseph 7 Terminal");
+            }
+            else if (subTitle.equals("Savemore Terminal")){
+                infoSubTitle2.setText("St. Joseph 7 Terminal");
+            }
+            else if (subTitle.equals("St. Joseph 7 Terminal")){
+                infoSubTitle2.setText("Savemore Terminal");
+            }
+            else if (subTitle.equals("Celestine Home Terminal")){
+                infoSubTitle2.setText("Savemore Terminal");
+            }
         }
         else if (title.equals("BMBGTODA")){
             noTerminal.setText("No. of Terminal: 5");
@@ -106,6 +150,23 @@ public class InfoWindow implements GoogleMap.InfoWindowAdapter {
             franchiseColor.setBackgroundResource(R.color.bmbgtoda);
             franchiseColorTxt.setText("Franchise Color: ");
             todaDetailsContainer.setVisibility(View.VISIBLE);
+
+            if (subTitle.equals("Waltermart Terminal")){
+                infoSubTitle2.setText("Main Terminal Banlic");
+            }
+            else if (subTitle.equals("Main Terminal Banlic")){
+                infoSubTitle2.setText("Brgy. Gulod Purok 2");
+            }
+            else if (subTitle.equals("Mabuhay Simbahan Terminal")){
+                infoSubTitle2.setText("Main Terminal Banlic");
+            }
+            else if (subTitle.equals("Mabuhay Phase 1 Terminal Baclaran")){
+                infoSubTitle2.setText("Main Terminal Banlic");
+            }
+            else if (subTitle.equals("Brgy. Gulod Purok 2")){
+                infoSubTitle2.setText("Main Terminal Banlic");
+            }
+
         }
         else if (title.equals("CSVTODA")){
             noTerminal.setText("No. of Terminal: 6");
@@ -113,6 +174,26 @@ public class InfoWindow implements GoogleMap.InfoWindowAdapter {
             franchiseColor.setBackgroundResource(R.color.csvtoda);
             franchiseColorTxt.setText("Franchise Color: ");
             todaDetailsContainer.setVisibility(View.VISIBLE);
+
+            if (subTitle.equals("Katapatan Main Terminal")){
+                infoSubTitle2.setText("South Ville Blk. 21 Terminal");
+            }
+            else if (subTitle.equals("South Ville Blk. 21 Terminal")){
+                infoSubTitle2.setText("Katapatan Main Terminal");
+            }
+            else if (subTitle.equals("South Ville Blk. 57 Terminal")){
+                infoSubTitle2.setText("Southville Sunrise Terminal");
+            }
+            else if (subTitle.equals("Southville Palengke Terminal")){
+                infoSubTitle2.setText("Southville Sunrise Terminal");
+            }
+            else if (subTitle.equals("Southville Sunrise Terminal")){
+                infoSubTitle2.setText("Cabuyao Bayan Del Pilar Street");
+            }
+            else if (subTitle.equals("Cabuyao Bayan Del Pilar Street")){
+                infoSubTitle2.setText("Southville Sunrise Terminal");
+            }
+
         }
         else if (title.equals("SJV7TODA")){
             noTerminal.setText("No. of Terminal: 6");
@@ -120,14 +201,16 @@ public class InfoWindow implements GoogleMap.InfoWindowAdapter {
             franchiseColor.setBackgroundResource(R.color.sjv7toda);
             franchiseColorTxt.setText("Franchise Color: ");
             todaDetailsContainer.setVisibility(View.VISIBLE);
+
+            if (subTitle.equals("Katapatan Main Terminal")){
+                infoSubTitle2.setText("South Ville Blk. 21 Terminal");
+            }
+            else if (subTitle.equals("South Ville Blk. 21 Terminal")){
+                infoSubTitle2.setText("Katapatan Main Terminal");
+            }
+
         }
-        else if (title.equals("SJV7TODA")){
-            noTerminal.setText("No. of Terminal: 6");
-            noOfUnits.setText("No. of Units: 0001 - 0130");
-            franchiseColor.setBackgroundResource(R.color.sjv7toda);
-            franchiseColorTxt.setText("Franchise Color: ");
-            todaDetailsContainer.setVisibility(View.VISIBLE);
-        }
+
         else if (title.equals("SJBTODA")){
             noTerminal.setText("No. of Terminal: 4");
             noOfUnits.setText("No. of Units: 0001 - 0260");

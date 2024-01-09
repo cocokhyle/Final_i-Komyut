@@ -147,9 +147,9 @@ public class MainActivity extends AppCompatActivity implements TaskLoadedCallbac
     @Override
     public void onDestroy() {
         super.onDestroy();
-        /*editor.remove(userLoc);
+        editor.remove(userLoc);
         editor.remove(userDes);
-        editor.remove(cost);*/
+        editor.remove(cost);
         editor.remove(connection);
         editor.apply();
 

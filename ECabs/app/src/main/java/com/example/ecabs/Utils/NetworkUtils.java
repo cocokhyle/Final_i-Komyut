@@ -10,14 +10,14 @@ public class NetworkUtils {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
 
         if (connectivityManager != null) {
-            NetworkInfo wifiNetworkInfo = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+            NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
 
-            if (wifiNetworkInfo != null) {
-                return wifiNetworkInfo.isConnected();
+            if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
+                // Check if the connected network is WiFi
+                return activeNetworkInfo.getType() == ConnectivityManager.TYPE_WIFI;
             }
         }
 
         return false;
     }
-
 }

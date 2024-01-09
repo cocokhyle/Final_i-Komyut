@@ -1,6 +1,7 @@
 package com.example.ecabs.Utils;
 
 public class TodaItem {
+
     private String todaName;
     private String todaLoc;
     private double todaFare;
@@ -11,6 +12,7 @@ public class TodaItem {
     }
 
     public TodaItem(String todaName, String todaLoc, double todaFare) {
+
         this.todaName = todaName;
         this.todaLoc = todaLoc;
         this.todaFare = todaFare;
@@ -43,4 +45,6 @@ public class TodaItem {
     public void setTodaFare(double todaFare) {
         this.todaFare = todaFare;
     }
+
+
 }
