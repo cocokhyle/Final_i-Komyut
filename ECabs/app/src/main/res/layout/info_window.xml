@@ -27,7 +27,7 @@
                     android:id="@+id/infoTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="CSVTODA"
+                    android:text="--"
                     android:textAlignment="center"
                     android:fontFamily="@font/poppins_bold"
                     android:textSize="20sp"
@@ -36,7 +36,7 @@
                     android:id="@+id/infoSubTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Southville Sunrise Terminal"
+                    android:text="--"
                     android:textAlignment="center"
                     android:layout_marginTop="@dimen/_minus5sdp"
                     android:fontFamily="@font/poppins_medium_italic"
@@ -44,6 +44,7 @@
                     android:textAllCaps="false"
                     android:textColor="@color/white"/>
                 <TextView
+                    android:id="@+id/toTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="to"
@@ -52,18 +53,20 @@
                     android:fontFamily="@font/poppins_medium_italic"
                     android:textSize="15sp"
                     android:textAllCaps="false"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/white"
+                    android:visibility="gone"/>
                 <TextView
                     android:id="@+id/infoSubTitle2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Southville Sunrise Terminal"
+                    android:text="--"
                     android:textAlignment="center"
                     android:layout_marginTop="@dimen/_minus5sdp"
                     android:fontFamily="@font/poppins_medium_italic"
                     android:textSize="15sp"
                     android:textAllCaps="false"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/white"
+                    android:visibility="gone"/>
 
             </LinearLayout>
         </FrameLayout>

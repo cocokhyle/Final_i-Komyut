@@ -504,7 +504,7 @@ Context context;
                 R.drawable.dov_toda,
                 new LatLng(14.252331, 121.128769),
                 "DOVTODA",
-                "Don Onofre (Gate Terminal))"
+                "Don Onofre (Gate Terminal)"
 
         );
         MapUtils.addCustomMarkerToMap(
