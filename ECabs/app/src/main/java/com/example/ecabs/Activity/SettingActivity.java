@@ -144,12 +144,13 @@ public class SettingActivity extends AppCompatActivity {
         TextView saveLoctTxt = view.findViewById(R.id.saveLocTxt);
         getKeyName = preferences.getString(KEY_NAME, null);
 
-        if (getKeyName.length() > 5){
-            shortEmail = getKeyName.substring(0, 5) + "...";
-        }else {
-            shortEmail = getKeyName;
+        if (getKeyName != null){
+            if (getKeyName.length() > 5){
+                shortEmail = getKeyName.substring(0, 5) + "...";
+            }else {
+                shortEmail = getKeyName;
+            }
         }
-
 
         if (getEmail !=null){
             userName.setText("Hello, "+shortEmail+"!");
@@ -167,7 +168,6 @@ public class SettingActivity extends AppCompatActivity {
             savedLocationBtn.setVisibility(View.GONE);
             logoutContainer.setVisibility(View.GONE);
         }
-
         logoutBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

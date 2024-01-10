@@ -1,11 +1,13 @@
 package com.example.ecabs.Activity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -18,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -34,6 +37,12 @@ import com.example.ecabs.Utils.NetworkUtils;
 import com.example.ecabs.Utils.SQLHelper;
 import com.example.ecabs.databinding.ActivityMainBinding;
 import com.google.android.gms.maps.model.PolylineOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class MainActivity extends AppCompatActivity implements TaskLoadedCallback {
@@ -54,6 +63,12 @@ public class MainActivity extends AppCompatActivity implements TaskLoadedCallbac
     String getFareDiscount;
     int demoPage = 0;
     String demo;
+
+    //This is the current version
+    private String ver = "ver1.0";
+    String verUpdate;
+    String description;
+    private String url;
     private boolean doubleBackToExitPressedOnce = false;
     private ConnectionManager connectionManager;
 
@@ -77,6 +92,36 @@ public class MainActivity extends AppCompatActivity implements TaskLoadedCallbac
         } catch (Exception ioe) {
             Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_LONG).show();
         }
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("update");
+        Query checkUpdate = reference.orderByChild("version");
+
+        checkUpdate.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    verUpdate = snapshot.child("version").getValue(String.class);
+                    url = snapshot.child("url").getValue(String.class);
+                    description = snapshot.child("description").getValue(String.class);
+
+                   if (verUpdate != null){
+
+                       if (!ver.equals(verUpdate)) {
+                           newUpdate();
+                       }else{
+
+                       }
+                   }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+
 
         con = preferences.getString(connection, null);
         getFareDiscount = preferences.getString(fareDiscount, null);
@@ -360,6 +405,41 @@ public class MainActivity extends AppCompatActivity implements TaskLoadedCallbac
         });
 
     }
+    public void newUpdate(){
+        View alertCustomDialog = LayoutInflater.from(MainActivity.this).inflate(R.layout.dialog_update, null);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
+        alertDialog.setView(alertCustomDialog);
+        Button updateBtn = (Button) alertCustomDialog.findViewById(R.id.updateBtn);
+        TextView textView = (TextView) alertCustomDialog.findViewById(R.id.versionTxt);
+        TextView desTxt = (TextView) alertCustomDialog.findViewById(R.id.descriptionTxt);
+        final AlertDialog dialog = alertDialog.create();
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
+
+        if (verUpdate != null ){
+            textView.setText("Update to " + verUpdate);
+        }
+        if (description !=null){
+            desTxt.setText(description);
+        }
+
+
+        updateBtn.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("QueryPermissionsNeeded")
+            @Override
+            public void onClick(View view) {
+                dialog.cancel();
+                goToUrl(url);
+            }
+        });
+
+    }
+
+    private void goToUrl(String url) {
+        Uri uri = Uri.parse(url);
+        startActivity(new Intent(Intent.ACTION_VIEW, uri));
+    }
+
     private void hideKeyboard(View view) {
         InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm != null) {

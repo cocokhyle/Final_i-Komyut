@@ -572,6 +572,8 @@ public class Maps_Fragment extends Fragment implements OnMapReadyCallback {
                 }
             }
         });
+
+
         settingBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

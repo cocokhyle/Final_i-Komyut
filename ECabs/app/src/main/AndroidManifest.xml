@@ -87,7 +87,14 @@
         <activity
             android:name=".Activity.MainActivity"
             android:exported="false"
-            tools:ignore="DuplicateActivity" />
+            tools:ignore="DuplicateActivity" >
+            <intent-filter>
+
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="http" />
+                <data android:scheme="https" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

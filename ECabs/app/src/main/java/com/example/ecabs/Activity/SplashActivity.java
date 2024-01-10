@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +22,7 @@ public class SplashActivity extends AppCompatActivity {
     private float from;
     private float to;
     private Animation animation;
+    private String ver = "version 1.0";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,6 +30,10 @@ public class SplashActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash);
 
         progressBar = findViewById(R.id.progress_bar);
+
+        TextView verTxt = findViewById(R.id.verTxt);
+
+        verTxt.setText(ver);
 
 
         from = 0; // Set your desired initial progress value
