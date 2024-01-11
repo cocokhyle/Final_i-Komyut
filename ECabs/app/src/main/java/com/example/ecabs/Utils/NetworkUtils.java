@@ -14,7 +14,7 @@ public class NetworkUtils {
 
             if (activeNetworkInfo != null && activeNetworkInfo.isConnected()) {
                 // Check if the connected network is WiFi
-                return activeNetworkInfo.getType() == ConnectivityManager.TYPE_WIFI;
+                return activeNetworkInfo.getType() == ConnectivityManager.TYPE_MOBILE || activeNetworkInfo.getType() == ConnectivityManager.TYPE_WIFI;
             }
         }
 
