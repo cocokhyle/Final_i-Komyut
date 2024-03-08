@@ -20,7 +20,9 @@
         android:roundIcon="@drawable/rounded_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.ECabs"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
+
         <activity
             android:name=".Activity.SettingActivity"
             android:exported="false" />

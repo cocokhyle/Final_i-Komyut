@@ -1,15 +1,19 @@
 package com.example.ecabs.Activity;
 
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -28,6 +32,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.ecabs.DirectionHelper.TaskLoadedCallback;
 import com.example.ecabs.Fragments.Maps_Fragment;
 import com.example.ecabs.Fragments.TransitFragment;
@@ -43,6 +52,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class MainActivity extends AppCompatActivity implements TaskLoadedCallback {
@@ -65,12 +78,16 @@ public class MainActivity extends AppCompatActivity implements TaskLoadedCallbac
     String demo;
 
     //This is the current version
-    private String ver = "ver1.0";
+    private String ver = "ver2.0";
     String verUpdate;
     String description;
     private String url;
     private boolean doubleBackToExitPressedOnce = false;
     private ConnectionManager connectionManager;
+
+    int idArraySize;
+    SQLHelper dbHelper;
+
 
 
     @Override
@@ -84,15 +101,19 @@ public class MainActivity extends AppCompatActivity implements TaskLoadedCallbac
         setBottomNavigationSelectedItem(R.id.map);
 
         // create DB
-        SQLHelper dbHelper = new SQLHelper(this);
+        dbHelper = new SQLHelper(this);
         demo = preferences.getString(DEMO, null);
+
+
 
         try {
             dbHelper.createDB();
+            Log.d("Error", "pass");
+
         } catch (Exception ioe) {
+            Log.d("Error", "try_catch");
             Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_LONG).show();
         }
-
         DatabaseReference reference = FirebaseDatabase.getInstance().getReference("update");
         Query checkUpdate = reference.orderByChild("version");
 
@@ -445,6 +466,105 @@ public class MainActivity extends AppCompatActivity implements TaskLoadedCallbac
         if (imm != null) {
             imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
         }
+    }
+    private void executeSQLScriptFromApi() {
+        String apiUrl = "http://192.168.100.4:5000/api/getData";
+
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, apiUrl, null, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+
+                    dbHelper = new SQLHelper(MainActivity.this);
+                    JSONArray graphArray = response.getJSONArray("graph");
+                    SQLiteDatabase db = dbHelper.getWritableDatabase();  // Assuming dbHelper is an instance of SQLHelper
+
+                    for (int i = 0; i < graphArray.length(); i++) {
+                        JSONObject jsonData = graphArray.getJSONObject(i);
+                        String tableName = "graph";
+
+                        int id = jsonData.getInt("id");
+                        double weightFare = jsonData.getDouble("weight_fare");
+
+                        if (isRecordExists(db, tableName, id, weightFare)) {
+                            updateWeightFare(db, tableName, id, weightFare);
+                            Log.d("SQLHelper", "Record with id " + id + " and weight_fare " + weightFare + " already exists. Updated.");
+                        } else {
+                            ContentValues values = getContentValuesForInsert(tableName, jsonData);
+
+                            long insertResult = db.insert(tableName, null, values);
+
+                            if (insertResult != -1) {
+                                Log.d("SQLHelper", "Record with id " + id + " and weight_fare " + weightFare + " inserted.");
+                            } else {
+                                Log.e("SQLHelper", "Error inserting record with id " + id + " and weight_fare " + weightFare);
+                            }
+                        }
+                    }
+
+                    db.close();
+
+                } catch (JSONException e) {
+                    Log.e("SQLHelper", "Error parsing JSON response: " + e.getMessage());
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("SQLHelper", "Volley error: " + error.getMessage());
+            }
+        });
+
+        Volley.newRequestQueue(getApplicationContext()).add(request);
+
+    }
+    private boolean isRecordExists(SQLiteDatabase db, String tableName, int id, double weightFare) {
+        String query = "SELECT 1 FROM " + tableName + " WHERE id = " + id + " AND weight_fare = " + weightFare;
+        Cursor cursor = db.rawQuery(query, null);
+
+        boolean exists = cursor.getCount() > 0;
+
+        if (exists) {
+            Log.d("SQLHelper", "Record with id " + id + " and weight_fare " + weightFare + " already exists.");
+        } else {
+            Log.d("SQLHelper", "Record with id " + id + " and weight_fare " + weightFare + " does not exist.");
+        }
+
+        cursor.close();
+        return exists;
+    }
+
+    private void updateWeightFare(SQLiteDatabase db, String tableName, int id, double weightFare) {
+        ContentValues values = new ContentValues();
+        values.put("weight_fare", weightFare);
+
+        String whereClause = "id = ?";
+        String[] whereArgs = {String.valueOf(id)};
+
+        db.update(tableName, values, whereClause, whereArgs);
+    }
+
+    private ContentValues getContentValuesForInsert(String tableName, JSONObject jsonData) throws JSONException {
+        ContentValues values = new ContentValues();
+
+        JSONArray columns = jsonData.getJSONArray("columns");
+        for (int i = 0; i < columns.length(); i++) {
+            String columnName = columns.getString(i);
+
+            // Check the type of the value and insert it accordingly
+            if (jsonData.get(columnName) instanceof String) {
+                values.put(columnName, jsonData.getString(columnName));
+            } else if (jsonData.get(columnName) instanceof Integer) {
+                values.put(columnName, jsonData.getInt(columnName));
+            } else if (jsonData.get(columnName) instanceof Double) {
+                values.put(columnName, jsonData.getDouble(columnName));
+            } else {
+                // Handle other types as needed
+                Log.e("SQLHelper", "Unsupported data type for column " + columnName);
+            }
+        }
+
+        return values;
     }
 
 }
